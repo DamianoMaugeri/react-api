@@ -178,7 +178,18 @@ export default function MainSection() {
     //================================================  FUNZIONE ELIMINARE UN POST 
 
     function deletePost(currentPost) {
-        setPosts(posts.filter(post => post !== currentPost))
+        // setPosts(posts.filter(post => post !== currentPost))
+
+
+        axios.delete(`${API_BASE_URI}posts/${currentPost.id}`)
+            .then(() => {
+                fetchposts()
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
 
     }
     //================================================  FUNZIONE MODIFICARE UN POST 
