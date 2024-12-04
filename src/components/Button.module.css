@@ -1,0 +1,11 @@
+.button {
+    border: none;
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 28px;
+    background-color: orange;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    white-space: nowrap;
+}

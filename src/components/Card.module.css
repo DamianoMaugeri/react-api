@@ -1,0 +1,26 @@
+.card_body {
+    padding: 10px;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.description {
+    margin-bottom: 15px;
+
+}
+
+.card {
+    height: 100%;
+}
+
+.author {
+    margin-bottom: 10px;
+}
+
+h3 {
+    cursor: pointer;
+}
