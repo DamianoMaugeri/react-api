@@ -38,14 +38,17 @@ const tags = [
 
 export const API_BASE_URI = 'http://localhost:3000/'
 
+
+//===============================================================================================================================
+
 export default function MainSection() {
 
     //================= VARIABILI REATTIVE
     const postiniziale = []
 
     const [posts, setPosts] = useState(postiniziale);
-    // const [author, setAuthor] = useState('');
-    // const [title, setTitle] = useState('');
+    const [formActvive, setFormActive] = useState(false)
+
     const [isActive, setIsActive] = useState(false);
     const [tagChecked, setTagChecked] = useState(false)
     const [formData, setFormData] = useState({
@@ -93,10 +96,17 @@ export default function MainSection() {
 
     }
 
-    //==================console.log()
+    //===============================
+
+    function toggleForm() {
+        setFormActive(!formActvive)
+
+    }
 
 
 
+
+    //=====================================
     useEffect(() => {
         if (!formData.isPublished) {
             setIsActive(true)
@@ -144,7 +154,7 @@ export default function MainSection() {
 
         axios.post(`${API_BASE_URI}posts`, newPost)
             .then(res => {
-                setPosts([...posts, res.data])
+                setPosts([...posts, res.data]);
                 setFormData({
                     title: '',
                     author: '',
@@ -152,7 +162,9 @@ export default function MainSection() {
                     content: '',
                     isPublished: true,
                     tags: ['placeholdertags']
-                })
+                });
+                setFormActive()
+
 
 
             }).catch(err => {
@@ -203,35 +215,38 @@ export default function MainSection() {
 
     }
 
-    // ==============================  HTML
+    // ======================================================== HTML ===============================================================================
 
     return (
         <main>
             <section>
                 <div className="container">
 
-                    <form onSubmit={addPost} action="" className="main_form" >
-                        <div>
-                            <label htmlFor="title">Nome</label>
-                            <input type="text" name='title' placeholder="titolo" value={formData.title} onChange={handleFormData} />
-                        </div>
+                    {formActvive ?
 
-                        <div>
-                            <label htmlFor="author">Autore</label>
-                            <input type="text" name='author' placeholder="Autore" value={formData.author} onChange={handleFormData} />
-                        </div>
+                        <form onSubmit={addPost} action="" className={style.main_form} >
+                            <div className={style.form_element}>
+                                <label htmlFor="title">Nome</label>
+                                <input className={style.input} type="text" name='title' placeholder="titolo" value={formData.title} onChange={handleFormData} />
+                            </div>
 
-                        <div>
-                            <label htmlFor="content">contenuto</label>
-                            <input type="text" name='content' placeholder="contenuto" value={formData.content} onChange={handleFormData} />
-                        </div>
+                            <div className={style.form_element}>
+                                <label htmlFor="author">Autore</label>
+                                <input className={style.input} type="text" name='author' placeholder="Autore" value={formData.author} onChange={handleFormData} />
+                            </div>
 
-                        <div>
-                            <label htmlFor="image">Immagine</label>
-                            <input type="text" name='image' placeholder="immagine" value={formData.image} onChange={handleFormData} />
-                        </div>
+                            <div className={style.form_element}>
+                                <label htmlFor="content">contenuto</label>
+                                <textarea className={style.input} name="content" placeholder="contenuto" value={formData.content} onChange={handleFormData}></textarea>
+                                {/* <input type="text" name='content' placeholder="contenuto" value={formData.content} onChange={handleFormData} /> */}
+                            </div>
 
-                        {/* <div>
+                            <div className={style.form_element}>
+                                <label htmlFor="image">Immagine</label>
+                                <input className={style.input} type="text" name='image' placeholder="immagine" value={formData.image} onChange={handleFormData} />
+                            </div>
+
+                            {/* <div>
                             <h4>tags</h4>
                             <ul>
                                 {tags.map(tag => (
@@ -244,16 +259,18 @@ export default function MainSection() {
                             </ul>
                         </div> */}
 
-                        <div>
-                            <label htmlFor="isPublished">pubblicato</label>
-                            <input type="checkbox" name='isPublished' checked={formData.isPublished} onChange={handleFormData} />
-                        </div>
-                        {isActive &&
-                            <div>il post verrà salvato come bozza</div>
-                        }
+                            <div className={style.form_element}>
+                                <label htmlFor="isPublished">pubblicato</label>
+                                <input className={style.checkbox} type="checkbox" name='isPublished' checked={formData.isPublished} onChange={handleFormData} />
+                            </div>
+                            {isActive &&
+                                <div className={style.error_message}>il post verrà salvato come bozza</div>
+                            }
 
-                        <input type="submit" value="Aggiungi post" />
-                    </form>
+                            <input className={`${style.submit_btn}`} type="submit" value="Aggiungi post" />
+                        </form> :
+
+                        <button className={style.addForm_btn} onClick={setFormActive}>AGGIUNGI UN POST</button>}
 
                 </div>
 

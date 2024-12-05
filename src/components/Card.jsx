@@ -83,17 +83,19 @@ export function Card({ id = '', title = '', image = '', description = '', tags =
                     }
 
                 </div>
-                {tags.length ? <div>{tags.map((tag, i) => <span key={i} className={setClass(tag_css, tag)}>{tag}</span>)}</div> : <div>Nessun tag </div>}
+                {tags.length ? <div className={style.tags_list}>{tags.map((tag, i) => <div key={i} className={`${style.tags} setClass(tag_css, tag)`}>{tag}</div>)}</div> : <div>Nessun tag </div>}
                 <p className={style.description}>
                     {description}
                 </p>
-                <div className={style.author}>{`Autore: ${author}`}</div>
-                <Button />
-                <button onClick={deleteFunction}>elimina</button>
+                <div className={style.author}>Autore: <h4 className={style.author_title}>{author}</h4></div>
+                <div className={style.ends_buttons}>
+                    <Button />
+                    <button className={style.delete_button} onClick={deleteFunction}>elimina</button>
+                </div>
 
                 {isPublished ?
-                    <div>Pubblicato</div> :
-                    <div>Draft</div>
+                    <div className={style.published}>Pubblicato</div> :
+                    <div className={style.draft}>Draft</div>
                 }
 
 

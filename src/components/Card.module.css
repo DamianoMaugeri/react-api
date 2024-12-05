@@ -2,6 +2,10 @@
     padding: 10px;
     background-color: white;
     border-radius: 0 0 10px 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .title {
@@ -15,12 +19,67 @@
 
 .card {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .author {
+    margin-top: auto;
     margin-bottom: 10px;
+}
+
+.author_title {
+    display: inline-block;
 }
 
 h3 {
     cursor: pointer;
+}
+
+.tags_list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    margin-bottom: 10px;
+
+
+}
+
+.tags {
+    background-color: rgba(252, 176, 36, 0.61);
+    padding: 5px 8px;
+    border-radius: 10px;
+}
+
+
+.ends_buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.delete_button {
+    border: none;
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 28px;
+    background-color: orange;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.published {
+    color: green;
+    font-weight: bold;
+}
+
+.draft {
+    color: red;
+    font-weight: bold;
 }

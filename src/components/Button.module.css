@@ -8,4 +8,6 @@
     text-transform: uppercase;
     font-size: 12px;
     white-space: nowrap;
+    border-radius: 10px;
+    cursor: pointer;
 }
