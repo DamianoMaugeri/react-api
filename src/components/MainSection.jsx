@@ -194,8 +194,9 @@ export default function MainSection() {
 
 
         axios.delete(`${API_BASE_URI}posts/${currentPost.id}`)
-            .then(() => {
+            .then((res) => {
                 fetchposts()
+
 
             })
             .catch(err => {
@@ -206,9 +207,14 @@ export default function MainSection() {
     }
     //================================================  FUNZIONE MODIFICARE UN POST 
 
-    function updateTitle(cardtitle, index) {
+    function updateTitle(cardtitle, id) {
 
-        console.log(cardtitle, index);
+
+        axios.patch(`${API_BASE_URI}posts/${id}`, { title: cardtitle })
+            .then(res => {
+                fetchposts()
+            })
+            .catch(err => console.log(err))
 
         //setPosts((oldPosts) => oldPosts.map((post) => post.id === id ? { ...post, title: cardtitle } : post))
         //console.log(posts)
@@ -280,7 +286,7 @@ export default function MainSection() {
                     <div className="row">
                         {posts.map((post, index) => (
                             <div key={post.id} className="col_4">
-                                <Card id={post.id} title={post.title} image={post.image} description={post.content} tags={post.tags} author={post.author} isPublished={post.isPublished} deleteFunction={() => deletePost(post)} onUpdateTitle={(title) => updateTitle(title, index)} />
+                                <Card id={post.id} title={post.title} image={post.image} description={post.content} tags={post.tags} author={post.author} isPublished={post.isPublished} deleteFunction={() => deletePost(post)} onUpdateTitle={(title) => updateTitle(title, post.id)} />
                             </div>
                         ))}
 
